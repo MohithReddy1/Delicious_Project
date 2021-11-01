@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/pizza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/pizza"
+        android:text="Pizza"
+        android:background="@drawable/highlight_btn"
+        android:layout_marginRight="5dp"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        android:width="130dp"
+        android:height="50dp"
+        android:padding="5dp"/>
+
+    <Button
+        android:id="@+id/burger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/burger"
+        android:text="Burger"
+        android:background="@drawable/btn_bg"
+        android:textColor="@color/orange90"
+        android:layout_marginRight="5dp"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        android:width="150dp"
+        android:height="50dp"
+        android:padding="5dp"/>
+
+    <Button
+        android:id="@+id/desert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/desert"
+        android:text="Desert"
+        android:background="@drawable/btn_bg"
+        android:textColor="@color/orange90"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        android:width="140dp"
+        android:height="50dp"
+        android:padding="5dp"/>
+
+
+</LinearLayout>

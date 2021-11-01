@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable-v24/profile_box.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/box.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/btn_bg.xml" value="0.2703125" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/btnnotselected.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/buttons.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/card_bg.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/highlight_btn.xml" value="0.14635416666666667" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/message.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/profile_round.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/selector.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/shawdow_btn.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/activity_cart.xml" value="0.2128623188405797" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/activity_orders.xml" value="0.2128623188405797" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/burger.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/desert.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/fragment_signup.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/header.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/loginactivity.xml" value="0.4" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/pizza.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/tabs.xml" value="0.536" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/menu/footer.xml" value="0.22592592592592592" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/menu/fotter.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/menu/my_navigation_items.xml" value="0.22592592592592592" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

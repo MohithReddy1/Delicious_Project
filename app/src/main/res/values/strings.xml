@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Delicious1</string>
+    <string name="tag">Food Delivery App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">LOGIN</string>
+    <string name="signup">SIGNUP</string>
+    <string name="email_number">Enter email or Phone number</string>
+    <string name="pwd">Password</string>
+    <string name="con_pwd">Confirm Password</string>
+    <string name="forgot_pwd">Forgot Password?</string>
+    <string name="or">OR</string>
+</resources>
