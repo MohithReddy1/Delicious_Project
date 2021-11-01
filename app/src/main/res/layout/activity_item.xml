@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ItemActivity"
+    android:background="#F9F9FB">
+
+    <ImageView
+        android:id="@+id/decor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ellipse2" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/back_btn" />
+
+    <ImageView
+        android:id="@+id/foodPic"
+        android:layout_width="215dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/decor"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-10dp"
+        android:src="@drawable/burger1" />
+
+    <TextView
+        android:id="@+id/titleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/back"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/bold"
+        android:text="Chicken Burger"
+        android:textColor="@color/light_black"
+        android:textSize="32sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleTxt"
+        android:id="@+id/price">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/bold"
+            android:text="₹"
+            android:textColor="@color/orange"
+            android:textSize="32sp"/>
+
+        <TextView
+            android:id="@+id/priceTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/bold"
+            android:text="200"
+            android:textColor="@color/orange"
+            android:textSize="32sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:text="Size"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/bold"
+            android:text="Small"
+            android:textColor="@color/light_black"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:text="Calories Intake"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/bold"
+            android:text="400 cal"
+            android:textColor="@color/light_black"
+            android:textSize="19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:text="Delivery in"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bold"
+            android:text="30 min"
+            android:textColor="@color/light_black"
+            android:textSize="19sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/box"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/bold"
+        android:text="Ingredients"
+        android:textColor="@color/light_black"
+        android:textSize="20sp" />
+
+
+    <LinearLayout
+        android:id="@+id/ingset"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/ingredient"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/ingone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ingredient_bg"
+            android:elevation="5dp"
+            android:src="@drawable/meat" />
+
+        <ImageView
+            android:id="@+id/ingtwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/ingredient_bg"
+            android:elevation="5dp"
+            android:src="@drawable/tomato" />
+
+        <ImageView
+            android:id="@+id/ingthree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/ingredient_bg"
+            android:elevation="5dp"
+            android:src="@drawable/garlic" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addToCardBtn"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/ingset"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/highlight_btn"
+        android:backgroundTint="@color/orange"
+        android:drawableLeft="@drawable/cart"
+        android:elevation="5dp"
+        android:text="Add to Cart"
+        android:textAllCaps="false"
+        android:textSize="25sp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/footerbg"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/footer" />
+
+</RelativeLayout>

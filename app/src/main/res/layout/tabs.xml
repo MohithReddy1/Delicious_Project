@@ -14,8 +14,8 @@
         app:backgroundTint="@null"
         android:textAllCaps="false"
         android:background="@drawable/btn_selected"
-        android:layout_marginRight="5dp"
-        />
+        android:layout_marginEnd="10dp"
+        android:textSize="15sp"/>
 
     <Button
         android:id="@+id/signup"
@@ -27,5 +27,5 @@
         android:textAllCaps="false"
         android:textColor="#D50000"
         app:backgroundTint="@null"
-        />
+        android:textSize="15sp"/>
 </LinearLayout>

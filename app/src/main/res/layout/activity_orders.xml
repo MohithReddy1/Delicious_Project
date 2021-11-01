@@ -32,12 +32,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="80dp"
         android:src="@drawable/message"
         app:backgroundTint="@color/orange90"
-        app:tint="@android:color/white"
-        app:elevation="6dp" />
+        app:elevation="6dp"
+        app:tint="@android:color/white" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

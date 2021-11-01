@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Delicious">
         <activity
+            android:name=".ItemActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".login_activity"
             android:exported="true" />
         <activity
