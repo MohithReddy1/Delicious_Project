@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profile"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F9F9FB">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +50,7 @@
             android:layout_marginTop="40dp"
             android:background="@null"
             android:hint="Name"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/photo"

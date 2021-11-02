@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.mohith.delicious.Domain.FoodDomain;
+import com.mohith.delicious.Helper.ManagementCart;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -21,13 +22,16 @@ public class ItemActivity extends AppCompatActivity {
     private TextView titleTxt, priceTxt;
     private ImageView picFood, backBtn;
     private FoodDomain object;
+    private int numberOrder = 1;
+    private ManagementCart managementCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
-
         getSupportActionBar().hide();
+
+        managementCart = new ManagementCart(this);
 
         initView();
         getBundle();
@@ -82,6 +86,14 @@ public class ItemActivity extends AppCompatActivity {
 
         titleTxt.setText(object.getTitle());
         priceTxt.setText(""+object.getPrice());
+
+        addToCardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                object.setNumberInCart(numberOrder);
+                managementCart.insertFood(object);
+            }
+        });
     }
 
     private void initView() {
