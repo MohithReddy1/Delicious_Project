@@ -1,21 +1,30 @@
 package com.mohith.delicious;
 
-        import androidx.annotation.NonNull;
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.fragment.app.Fragment;
-        import androidx.fragment.app.FragmentActivity;
-        import androidx.viewpager2.adapter.FragmentStateAdapter;
-        import androidx.viewpager2.widget.ViewPager2;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
-        import android.content.Intent;
-        import android.graphics.Color;
-        import android.os.Bundle;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.Button;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-        import com.google.android.material.bottomnavigation.BottomNavigationView;
-        import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class Home extends AppCompatActivity {
@@ -23,6 +32,9 @@ public class Home extends AppCompatActivity {
     Button pizza, burger, desert;
     FragmentAdapter fragmentAdapter;
     ViewPager2 viewPager2;
+    TextView name;
+    FirebaseAuth mAuth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +44,11 @@ public class Home extends AppCompatActivity {
         pizza = findViewById(R.id.pizza);
         burger = findViewById(R.id.burger);
         desert = findViewById(R.id.desert);
+        name = findViewById(R.id.name);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        setName();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
 
@@ -108,6 +125,24 @@ public class Home extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
+            }
+        });
+
+    }
+
+    private void setName(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+        Query checkUser = reference.orderByChild("email").equalTo(user.getEmail());
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    name.setText(snapshot.child(user.getUid()).child("name").getValue(String.class));
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 

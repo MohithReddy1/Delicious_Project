@@ -10,9 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Delicious">
         <activity
+            android:name=".payment"
+            android:exported="true" />
+        <activity
+            android:name=".success"
+            android:exported="true" />
+        <activity
             android:name=".ItemActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".login_activity"
             android:exported="true" />
