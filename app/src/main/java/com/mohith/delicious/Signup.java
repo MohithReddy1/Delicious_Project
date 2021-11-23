@@ -3,6 +3,7 @@ package com.mohith.delicious;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +70,8 @@ public class Signup extends Fragment {
         String userEmail = email.getText().toString().trim();
         String userMobile = mobile.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
+        int i = R.drawable.propic_dummy;
+        String image = Integer.toString(i);
 
         if(TextUtils.isEmpty(userEmail)){
             email.setError("please enter email");
@@ -89,7 +92,7 @@ public class Signup extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getActivity(),"Registered..!",Toast.LENGTH_SHORT).show();
-                        createAccount(userEmail,userMobile,userPassword,task.getResult().getUser().getUid());
+                        createAccount(userEmail,userMobile,userPassword,task.getResult().getUser().getUid(),image);
                         startActivity(new Intent(getActivity(),Home.class));
                     }else{
 
@@ -113,14 +116,14 @@ public class Signup extends Fragment {
             });
         }
     }
-    public void createAccount(String userEmail,String userMobile,String userPassword,String userId){
+    public void createAccount(String userEmail,String userMobile,String userPassword,String userId, String image){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
         Query checkUser = reference.orderByChild("email").equalTo(userEmail);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(!snapshot.exists()){
-                    UserHelperClass helperClass = new UserHelperClass(userEmail,userMobile,userPassword,userId);
+                    UserHelperClass helperClass = new UserHelperClass(userEmail,userMobile,userPassword,userId, image);
                     reference.child(userId).setValue(helperClass);
                 }
             }

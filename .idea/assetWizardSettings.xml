@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/location_on/baseline_location_on_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/question_mark/baseline_question_mark_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,8 +33,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="fa4a0c" />
-                            <entry key="outputName" value="ic_location" />
+                            <entry key="outputName" value="question_mark" />
                             <entry key="sourceFile" value="D:\MAD\Apps\Delicious" />
                           </map>
                         </option>

@@ -10,9 +10,11 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,6 +35,8 @@ public class Home extends AppCompatActivity {
     FragmentAdapter fragmentAdapter;
     ViewPager2 viewPager2;
     TextView name;
+//    ImageView photo;
+//    String image;
     FirebaseAuth mAuth;
     FirebaseUser user;
 
@@ -138,6 +142,9 @@ public class Home extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     name.setText(snapshot.child(user.getUid()).child("name").getValue(String.class));
+//                    image = snapshot.child(user.getUid()).child("image").getValue(String.class);
+//                    int i=Integer.parseInt(image);
+//                    photo.setImageResource(i);
                 }
             }
             @Override

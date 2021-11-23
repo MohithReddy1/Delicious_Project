@@ -2,24 +2,26 @@ package com.mohith.delicious;
 
 public class UserHelperClass {
 
-    private String email,mobile,password,address,id,name;
+    private String email,mobile,password,address,id,name, image;
 
-    public UserHelperClass(String email,String mobile,String password,String userId){
+    public UserHelperClass(String email, String mobile, String password, String userId, String image){
         this.email = email;
         this.password = password;
         this.mobile = mobile;
+        this.image = image;
         this.address = "";
         this.id = userId;
-        this.name = "";
+        this.name = "User";
     }
 
-    public UserHelperClass(String email, String mobile, String password, String address, String id,String name) {
+    public UserHelperClass(String email, String mobile, String password, String address, String id, String name, String image) {
         this.email = email;
         this.mobile = mobile;
         this.password = password;
         this.address = address;
         this.id = id;
         this.name = name;
+        this.image = image;
     }
 
     public String getEmail() {
@@ -67,5 +69,13 @@ public class UserHelperClass {
     }
     public void setName(String name){
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

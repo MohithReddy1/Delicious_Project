@@ -33,7 +33,7 @@ public class profile extends AppCompatActivity {
     Button update;
     EditText email,password,mobile,address,name;
     DatabaseReference reference;
-    String dbEmail,dbPassword,dbMobile,dbAddress,dbName;
+    String dbEmail,dbPassword,dbMobile,dbAddress,dbName, dbImage;
 
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -67,7 +67,7 @@ public class profile extends AppCompatActivity {
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                hello();
+                ImageClick();
             }
         });
 
@@ -175,12 +175,15 @@ public class profile extends AppCompatActivity {
                         dbMobile = snapshot.child(user.getUid()).child("mobile").getValue(String.class);
                         dbName = snapshot.child(user.getUid()).child("name").getValue(String.class);
                         dbPassword = snapshot.child(user.getUid()).child("password").getValue(String.class);
+                        dbImage = snapshot.child(user.getUid()).child("image").getValue(String.class);
+                        int i=Integer.parseInt(dbImage);
 
                         email.setText(dbEmail);
                         address.setText(dbAddress);
                         mobile.setText(dbMobile);
                         password.setText(dbPassword);
                         name.setText(dbName);
+                        photo.setImageResource(i);
 
                     }
                 }
@@ -211,9 +214,8 @@ public class profile extends AppCompatActivity {
         }
     }
 
-    void hello(){
+    void ImageClick(){
         Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
         startActivityForResult(intent,999);
     }
 
