@@ -11,4 +11,5 @@
     <string name="forgot_pwd">Forgot Password?</string>
     <string name="or">OR</string>
     <string name="order"><u>Order again</u></string>
+    <string name="progresstext">Updating.....</string>
 </resources>

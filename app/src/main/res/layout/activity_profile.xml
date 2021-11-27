@@ -62,7 +62,7 @@
             android:background="@drawable/profile_round"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/question_mark" />
+            android:src="@drawable/propic_dummy" />
 
     </RelativeLayout>
 

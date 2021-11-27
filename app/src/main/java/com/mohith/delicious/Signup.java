@@ -70,8 +70,6 @@ public class Signup extends Fragment {
         String userEmail = email.getText().toString().trim();
         String userMobile = mobile.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
-        int i = R.drawable.propic_dummy;
-        String image = Integer.toString(i);
 
         if(TextUtils.isEmpty(userEmail)){
             email.setError("please enter email");
@@ -92,7 +90,7 @@ public class Signup extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(getActivity(),"Registered..!",Toast.LENGTH_SHORT).show();
-                        createAccount(userEmail,userMobile,userPassword,task.getResult().getUser().getUid(),image);
+                        createAccount(userEmail,userMobile,userPassword,task.getResult().getUser().getUid());
                         startActivity(new Intent(getActivity(),Home.class));
                     }else{
 
@@ -116,14 +114,14 @@ public class Signup extends Fragment {
             });
         }
     }
-    public void createAccount(String userEmail,String userMobile,String userPassword,String userId, String image){
+    public void createAccount(String userEmail,String userMobile,String userPassword,String userId){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
         Query checkUser = reference.orderByChild("email").equalTo(userEmail);
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(!snapshot.exists()){
-                    UserHelperClass helperClass = new UserHelperClass(userEmail,userMobile,userPassword,userId, image);
+                    UserHelperClass helperClass = new UserHelperClass(userEmail,userMobile,userPassword,userId);
                     reference.child(userId).setValue(helperClass);
                 }
             }

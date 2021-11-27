@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -27,6 +32,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 
 public class profile extends AppCompatActivity {
     ImageView photo;
@@ -37,12 +50,19 @@ public class profile extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser user;
+
+    FirebaseStorage storage;
+    StorageReference storageReference;
+
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         getSupportActionBar().hide();
 
+        progressDialog = new ProgressDialog(profile.this);
         reference = FirebaseDatabase.getInstance().getReference("users");
 
         email = findViewById(R.id.update_email);
@@ -54,6 +74,7 @@ public class profile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
+        getImageFirebase();
         setData();
         update = findViewById(R.id.update);
         update.setOnClickListener(new View.OnClickListener(){
@@ -175,15 +196,12 @@ public class profile extends AppCompatActivity {
                         dbMobile = snapshot.child(user.getUid()).child("mobile").getValue(String.class);
                         dbName = snapshot.child(user.getUid()).child("name").getValue(String.class);
                         dbPassword = snapshot.child(user.getUid()).child("password").getValue(String.class);
-                        dbImage = snapshot.child(user.getUid()).child("image").getValue(String.class);
-                        int i=Integer.parseInt(dbImage);
 
                         email.setText(dbEmail);
                         address.setText(dbAddress);
                         mobile.setText(dbMobile);
                         password.setText(dbPassword);
                         name.setText(dbName);
-                        photo.setImageResource(i);
 
                     }
                 }
@@ -195,6 +213,67 @@ public class profile extends AppCompatActivity {
         }
 
 
+    }
+
+    private void getImageFirebase(){
+        storageReference = FirebaseStorage.getInstance().getReference("images/"+user.getUid());
+        try{
+
+            File localFile = File.createTempFile(user.getUid(),".png");
+            storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Log.d("path",localFile.getAbsolutePath());
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    photo.setImageBitmap(bitmap);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+
+                }
+            });
+        }catch (IOException e){
+
+        }
+    }
+
+    public void firebaseUploadImage(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] data = stream.toByteArray();
+
+        if(user != null) {
+
+            progressDialog.show();
+            progressDialog.setContentView(R.layout.progress);
+
+            progressDialog.getWindow().setBackgroundDrawableResource(
+                    android.R.color.transparent
+            );
+
+
+            storageReference = FirebaseStorage.getInstance().getReference("images").child(user.getUid());
+            UploadTask uploadTask = storageReference.putBytes(data);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    progressDialog.dismiss();
+                    Toast.makeText(profile.this,"Couldn't Change",Toast.LENGTH_SHORT).show();
+
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    getImageFirebase();
+                    Toast.makeText(profile.this,"Image Updated",Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            });
+
+        }
     }
 
     private boolean isAddressChanged() {
@@ -222,10 +301,12 @@ public class profile extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==999){
-            Bundle bundle=data.getExtras();
-            Bitmap bitmap=(Bitmap) bundle.get("data");
-            photo.setImageBitmap(bitmap);
+        if(requestCode==999 && data != null){
+            Bitmap bitmap=(Bitmap) data.getExtras().get("data");
+            if(bitmap != null){
+                firebaseUploadImage(bitmap);
+
+            }
         }
     }
 }

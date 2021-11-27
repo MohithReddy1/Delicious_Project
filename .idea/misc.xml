@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable-v24/orders_bg.xml" value="0.24027777777777778" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable-v24/profile_box.xml" value="0.24027777777777778" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/bg_round.xml" value="0.24027777777777778" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/box.xml" value="0.24027777777777778" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/btn_bg.xml" value="0.2703125" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/drawable/btnnotselected.xml" value="0.24027777777777778" />
@@ -37,6 +38,7 @@
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/header.xml" value="0.264" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/loginactivity.xml" value="0.4" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/pizza.xml" value="0.264" />
+        <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/progress.xml" value="0.22592592592592592" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/tabs.xml" value="0.264" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/viewholder_card.xml" value="0.22592592592592592" />
         <entry key="..\:/MAD/Apps/Delicious/app/src/main/res/layout/viewholder_item.xml" value="0.20923913043478262" />

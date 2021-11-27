@@ -8,6 +8,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +31,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class Home extends AppCompatActivity {
@@ -35,10 +45,10 @@ public class Home extends AppCompatActivity {
     FragmentAdapter fragmentAdapter;
     ViewPager2 viewPager2;
     TextView name;
-//    ImageView photo;
-//    String image;
+    ImageView photo;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +59,12 @@ public class Home extends AppCompatActivity {
         burger = findViewById(R.id.burger);
         desert = findViewById(R.id.desert);
         name = findViewById(R.id.name);
+        photo = findViewById(R.id.photo);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        getImageFirebase();
+
         setName();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.footer);
@@ -142,9 +155,6 @@ public class Home extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     name.setText(snapshot.child(user.getUid()).child("name").getValue(String.class));
-//                    image = snapshot.child(user.getUid()).child("image").getValue(String.class);
-//                    int i=Integer.parseInt(image);
-//                    photo.setImageResource(i);
                 }
             }
             @Override
@@ -152,6 +162,34 @@ public class Home extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void getImageFirebase(){
+        storageReference = FirebaseStorage.getInstance().getReference("images/"+user.getUid());
+        try{
+
+            File localFile = File.createTempFile(user.getUid(),".png");
+            storageReference.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Log.d("path",localFile.getAbsolutePath());
+                    Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    photo.setImageBitmap(bitmap);
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+
+                }
+            });
+        }catch (IOException e){
+
+        }
+
 
     }
 
