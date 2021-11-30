@@ -34,7 +34,7 @@ public class payment extends AppCompatActivity {
 
     Button payment;
 
-    TextView address, number;
+    TextView address, number, change, amount;
     FirebaseAuth mAuth;
     FirebaseUser user;
 
@@ -46,6 +46,21 @@ public class payment extends AppCompatActivity {
 
         address = findViewById(R.id.address);
         number = findViewById(R.id.number);
+        change = findViewById(R.id.change);
+        amount = findViewById(R.id.amount);
+
+        Intent myIntent = getIntent();
+        String total = myIntent.getStringExtra("total");
+        amount.setText(total);
+
+
+        change.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), profile.class);
+                startActivity(intent);
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -72,7 +87,7 @@ public class payment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(getApplicationContext(), orders.class);
+                Intent i = new Intent(getApplicationContext(), order_tracking.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 PendingIntent pi = PendingIntent.getActivity(getApplicationContext(),
                         0, i, PendingIntent.FLAG_ONE_SHOT);

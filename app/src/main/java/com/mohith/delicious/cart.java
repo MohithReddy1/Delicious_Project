@@ -36,11 +36,17 @@ public class cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         getSupportActionBar().hide();
 
+
+
         checkout = findViewById(R.id.checkout);
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), payment.class));
+//                startActivity(new Intent(getApplicationContext(), payment.class));
+
+                Intent intent = new Intent(cart.this, payment.class);
+                intent.putExtra("total", totalTxt.getText());
+                startActivity(intent);
             }
         });
 
@@ -101,10 +107,10 @@ public class cart extends AppCompatActivity {
     }
 
     private void calculateCard() {
-        double percentTax = 0.02;
+        double percentTax = 0.01;
         double delivery = 10;
 
-        tax = Math.round((managementCart.getTotalPrice() * percentTax) * 100.0) / 100.0;
+        tax = 30;
         double total = Math.round((managementCart.getTotalPrice() + tax + delivery) * 100.0) / 100.0;
         double itemTotal = Math.round(managementCart.getTotalPrice() * 100.0) / 100.0;
 

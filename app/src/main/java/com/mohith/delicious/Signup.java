@@ -89,7 +89,7 @@ public class Signup extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getActivity(),"Registered..!",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"Registered..!",Toast.LENGTH_SHORT).show();
                         createAccount(userEmail,userMobile,userPassword,task.getResult().getUser().getUid());
                         startActivity(new Intent(getActivity(),Home.class));
                     }else{

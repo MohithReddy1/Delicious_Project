@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".order_tracking">
+
+    <LinearLayout
+        android:id="@+id/hello"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/lightorange"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/seguisb"
+                android:text="ESTIMATED TIME"
+                android:textColor="#555555"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/seguisb"
+                android:text="ORDER NUMBER"
+                android:textColor="#555555"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/bold"
+                android:text="30 Minutes"
+                android:textColor="@color/light_black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/bold"
+                android:text="#C208990"
+                android:textColor="@color/light_black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@null"
+        android:background="@drawable/circle"
+        android:layout_below="@+id/hello"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="90dp"
+        android:id="@+id/one"/>
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/order_write"
+        android:layout_below="@+id/hello"
+        android:layout_marginTop="62dp"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@id/one"
+        android:id="@+id/two"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_below="@+id/hello"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/bold"
+        android:text="Order Placed"
+        android:textColor="@color/light_black"
+        android:textSize="20sp"
+        android:layout_toEndOf="@id/two"
+        android:id="@+id/three"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_below="@+id/three"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/segoeui"
+        android:text="We have recieved your order"
+        android:textColor="@color/light_black"
+        android:textSize="18sp"
+        android:layout_toEndOf="@id/two"/>
+
+
+    <ImageView
+        android:id="@+id/four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/one"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/circle"
+        app:backgroundTint="@null"/>
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/order_done"
+        android:layout_below="@+id/two"
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="14dp"
+        android:layout_toEndOf="@id/one"
+        android:id="@+id/five"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_below="@+id/three"
+        android:layout_marginTop="113dp"
+        android:fontFamily="@font/bold"
+        android:text="Order Confirmed"
+        android:textColor="@color/light_black"
+        android:textSize="20sp"
+        android:layout_toEndOf="@id/two"
+        android:id="@+id/six"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_below="@+id/six"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/segoeui"
+        android:text="Your order has been placed"
+        android:textColor="@color/light_black"
+        android:textSize="18sp"
+        android:layout_toEndOf="@id/two"/>
+
+    <ImageView
+        android:layout_width="106dp"
+        android:layout_height="384dp"
+        android:layout_above="@id/four"
+        android:layout_below="@id/one"
+        android:layout_marginStart="-8dp"
+        android:layout_marginBottom="-100dp"
+        android:rotation="90"
+        android:src="@drawable/line1"/>
+
+
+    <ImageView
+        android:id="@+id/seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/four"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="100dp"
+        android:alpha="0.8"
+        android:background="@drawable/circle"
+        app:backgroundTint="@null"/>
+
+    <ImageView
+        android:id="@+id/eight"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/five"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="35dp"
+        android:layout_toEndOf="@id/one"
+        android:src="@drawable/order_processing"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_below="@+id/six"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/bold"
+        android:text="Order Processed"
+        android:textColor="@color/light_black"
+        android:textSize="20sp"
+        android:layout_toEndOf="@id/two"
+        android:id="@+id/nine"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nine"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@id/two"
+        android:fontFamily="@font/segoeui"
+        android:text="We are processing your food"
+        android:textColor="@color/light_black"
+        android:textSize="18sp" />
+
+
+    <ImageView
+        android:id="@+id/twelve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seven"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="110dp"
+        android:alpha="0.3"
+        android:background="@drawable/circle"
+        app:backgroundTint="@null"/>
+
+    <ImageView
+        android:id="@+id/ten"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/eight"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="38dp"
+        android:layout_toEndOf="@id/one"
+        android:alpha="0.3"
+        android:src="@drawable/order_coming" />
+
+    <TextView
+        android:id="@+id/thirteen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nine"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="100dp"
+        android:layout_toEndOf="@id/two"
+        android:alpha="0.3"
+        android:fontFamily="@font/bold"
+        android:text="Ready to delivery"
+        android:textColor="@color/light_black"
+        android:textSize="20sp" />
+    <TextView
+        android:alpha="0.3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_below="@+id/thirteen"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/segoeui"
+        android:text="We are delivering your food"
+        android:textColor="@color/light_black"
+        android:textSize="18sp"
+        android:layout_toRightOf="@id/two"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/footerbg"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/footer" />
+
+
+</RelativeLayout>

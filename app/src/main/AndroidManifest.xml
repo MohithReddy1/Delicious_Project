@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Delicious">
         <activity
+            android:name=".order_tracking"
+            android:exported="true" />
+        <activity
             android:name=".payment"
             android:exported="true" />
         <activity

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(MainActivity.this, "User : " + user.getEmail(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "User : " + user.getEmail(), Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, Home.class);
                     startActivity(i);
                 }

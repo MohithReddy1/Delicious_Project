@@ -44,9 +44,11 @@ public class ManagementCart {
     }
 
     public void plusNumberFood(ArrayList<FoodDomain> listfood, int position, ChangeNumberItemsListener changeNumberItemsListener) {
-        listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() + 1);
-        tinyDB.putListObject("CardList", listfood);
-        changeNumberItemsListener.changed();
+        if(listfood.get(position).getNumberInCart() >=1 && listfood.get(position).getNumberInCart() <5){
+            listfood.get(position).setNumberInCart(listfood.get(position).getNumberInCart() + 1);
+            tinyDB.putListObject("CardList", listfood);
+            changeNumberItemsListener.changed();
+        }
     }
 
     public void MinusNumerFood(ArrayList<FoodDomain> listfood, int position, ChangeNumberItemsListener changeNumberItemsListener) {

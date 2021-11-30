@@ -64,7 +64,7 @@ public class Login extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getActivity(),"Logged in",Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(),"Logged in",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getActivity(),Home.class));
                     }else{
 

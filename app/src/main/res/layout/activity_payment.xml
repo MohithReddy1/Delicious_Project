@@ -25,11 +25,26 @@
         android:layout_below="@id/header"
         android:layout_marginStart="40dp"
         android:layout_marginTop="35dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="@font/seguisb"
         android:text="Delivery Address"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toRightOf="@id/heading"
+        android:fontFamily="@font/seguisb"
+        android:text="@string/change"
+        android:textColor="@color/orange"
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/deliveryaddress"
@@ -39,25 +54,23 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_location"
+            app:tint="@color/black" />
+
         <TextView
             android:id="@+id/address"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
             android:fontFamily="@font/seguisb"
             android:text="Address"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="40dp"
-            android:fontFamily="@font/seguisb"
-            android:text="Change"
-            android:textColor="@color/orange"
-            android:textSize="20sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -65,28 +78,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/deliveryaddress"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="40dp">
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_phone"
+            app:tint="@color/black" />
 
         <TextView
             android:id="@+id/number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
             android:fontFamily="@font/seguisb"
             android:text="Number"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/change1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="40dp"
-            android:fontFamily="@font/seguisb"
-            android:text="Change"
-            android:textColor="@color/orange"
-            android:textSize="20sp"/>
     </RelativeLayout>
 
     <TextView
@@ -197,10 +208,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="40dp"
             android:fontFamily="@font/seguisb"
-            android:text="₹686.00"
+            android:text="₹0"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 
 
