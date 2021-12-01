@@ -2,7 +2,9 @@ package com.mohith.delicious;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -27,9 +30,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Signup extends Fragment {
 
     TextInputEditText email,mobile,password;
+    TextInputLayout email_out,mobile_out,password_out;
     Button signup;
 
     FirebaseDatabase rootNode;
@@ -48,11 +56,63 @@ public class Signup extends Fragment {
         email = root.findViewById(R.id.email_input);
         mobile = root.findViewById(R.id.mobile_input);
         password = root.findViewById(R.id.password_input);
+
+        email_out = root.findViewById(R.id.email);
+        mobile_out = root.findViewById(R.id.phonenumber);
+        password_out = root.findViewById(R.id.password);
+
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        signup = (Button) root.findViewById(R.id.signup);
+        email_out.setHelperText("*Required");
+        mobile_out.setHelperText("*Required");
+        password_out.setHelperText("*Required");
 
+        email.addTextChangedListener(new TextWatcher() {
+             @Override
+             public void beforeTextChanged (CharSequence s,int start, int count,int after){
+             }
+             @Override
+             public void onTextChanged ( final CharSequence s, int start, int before,int count){
+                 email_out.setHelperText("");
+             }
+             @Override
+             public void afterTextChanged ( final Editable s){
+             }
+         }
+        );
+
+        mobile.addTextChangedListener(new TextWatcher() {
+              @Override
+              public void beforeTextChanged (CharSequence s,int start, int count,int after){
+              }
+              @Override
+              public void onTextChanged ( final CharSequence s, int start, int before,int count){
+                  mobile_out.setHelperText("");
+              }
+              @Override
+              public void afterTextChanged ( final Editable s){
+              }
+          }
+        );
+
+
+        password.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged (CharSequence s,int start, int count,int after){
+                }
+                @Override
+                public void onTextChanged ( final CharSequence s, int start, int before,int count){
+                    password_out.setHelperText("");
+                }
+                @Override
+                public void afterTextChanged ( final Editable s){
+                }
+            }
+        );
+
+
+        signup = (Button) root.findViewById(R.id.signup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,13 +132,19 @@ public class Signup extends Fragment {
         String userPassword = password.getText().toString().trim();
 
         if(TextUtils.isEmpty(userEmail)){
-            email.setError("please enter email");
+            email_out.setHelperText("*Required");
             email.requestFocus();
         }else if(TextUtils.isEmpty(userMobile)){
-            mobile.setError("please enter phone number");
+            mobile_out.setHelperText("*Required");
+            mobile.requestFocus();
+        }else if(userMobile.length() != 10){
+            mobile_out.setHelperText("*Invalid Mobile Number");
             mobile.requestFocus();
         }else if(TextUtils.isEmpty(userPassword)){
-            password.setError("please enter password");
+            password_out.setHelperText("*Required");
+            password.requestFocus();
+        }else if(!isValidPassword(userPassword)){
+            password_out.setHelperText("Password must contain 1 Caps,1 Small,1 Symbol,8 to 12 Chars");
             password.requestFocus();
         }else{
             email.setError(null);
@@ -104,7 +170,7 @@ public class Signup extends Fragment {
                                 break;
 
                             case "ERROR_INVALID_EMAIL":
-                                email.setError("Invalid email");
+                                email.setError("Invalid Email");
                                 email.requestFocus();
                                 break;
                         }
@@ -130,6 +196,19 @@ public class Signup extends Fragment {
 
             }
         });
+    }
+
+    private boolean isValidPassword(String password){
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8,12}$";
+        Pattern p = Pattern.compile(regex);
+        if (password == null) {
+            return false;
+        }
+        Matcher m = p.matcher(password);
+        return m.matches();
     }
 
 }

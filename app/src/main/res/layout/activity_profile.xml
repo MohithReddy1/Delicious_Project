@@ -127,6 +127,9 @@
             android:layout_below="@id/password"
             android:layout_marginTop="30dp"
             android:hint="Phone Number"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:prefixText="+91"
             app:hintTextColor="@color/black"
             app:startIconDrawable="@drawable/ic_phone"
             app:startIconTint="@color/black"
@@ -139,7 +142,9 @@
                 android:id="@+id/update_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:inputType="number"
+                android:maxLength="10"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout

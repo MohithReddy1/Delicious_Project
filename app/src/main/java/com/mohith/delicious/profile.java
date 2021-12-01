@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,13 +44,16 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class profile extends AppCompatActivity {
     ImageView photo;
     Button update;
     EditText email,password,mobile,address,name;
+    TextInputLayout email_out,password_out,mobile_out;
     DatabaseReference reference;
-    String dbEmail,dbPassword,dbMobile,dbAddress,dbName, dbImage;
+    String dbEmail,dbPassword,dbMobile,dbAddress,dbName;
 
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -70,6 +77,10 @@ public class profile extends AppCompatActivity {
         mobile = findViewById(R.id.update_mobile);
         address = findViewById(R.id.update_address);
         name = findViewById(R.id.name);
+
+        email_out = findViewById(R.id.email);
+        password_out = findViewById(R.id.password);
+        mobile_out = findViewById(R.id.mobile);
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -144,44 +155,73 @@ public class profile extends AppCompatActivity {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
 
-        if(!currentName.equals(dbName)){
-            reference.child(user.getUid()).child("name").setValue(currentName);
-        }
-//        if(!currentPassword)
+        if(TextUtils.isEmpty(currentEmail)){
+            Toast.makeText(profile.this,"Email Required",Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(currentMobile)){
+            Toast.makeText(profile.this,"Mobile Number Required",Toast.LENGTH_SHORT).show();
 
-        if(!currentMobile.equals(dbMobile)){
-            reference.child(user.getUid()).child("mobile").setValue(currentMobile);
+        }else if(currentMobile.length() != 10){
+            Toast.makeText(profile.this,"Invalid Mobile Number",Toast.LENGTH_SHORT).show();
         }
+        else if(TextUtils.isEmpty(currentPassword)){
+            Toast.makeText(profile.this,"Password Required",Toast.LENGTH_SHORT).show();
+        }else if(!isValidPassword(currentPassword)){
+            Toast.makeText(profile.this,"Weak Password",Toast.LENGTH_SHORT).show();
+        }else {
 
-        if(!currentAddress.equals(dbAddress)){
-            reference.child(user.getUid()).child("address").setValue(currentAddress);
-        }
-        if(!currentEmail.equals(dbEmail)){
-            reference.child(user.getUid()).child("email").setValue(currentEmail);
-            user.updateEmail(currentEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
+            if (!currentName.equals(dbName)) {
+                reference.child(user.getUid()).child("name").setValue(currentName);
+            }
 
-                }
-            });
-        }
-        if(!currentPassword.equals(dbPassword)){
-            reference.child(user.getUid()).child("password").setValue(currentPassword);
-            user.updatePassword(currentPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
+            if (!currentMobile.equals(dbMobile)) {
+                reference.child(user.getUid()).child("mobile").setValue(currentMobile);
+            }
 
+            if (!currentAddress.equals(dbAddress)) {
+                reference.child(user.getUid()).child("address").setValue(currentAddress);
+            }
+            if (!currentEmail.equals(dbEmail)) {
+                changeemail(dbEmail,currentEmail,currentPassword);
+                dbEmail = currentEmail;
+            }
+            if (!currentPassword.equals(dbPassword)) {
+                reference.child(user.getUid()).child("password").setValue(currentPassword);
+                user.updatePassword(currentPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+
+                        }
                     }
-                }
-            });
+                });
+            }
+
+
+            Toast.makeText(profile.this, "Profile Updated..!", Toast.LENGTH_SHORT).show();
         }
-
-
-        Toast.makeText(profile.this,"Profile Updated..!",Toast.LENGTH_SHORT).show();
-
 
     }
+
+    private void changeemail(String mail,String newMail, String pwd) {
+        AuthCredential credential = EmailAuthProvider.getCredential(mail, pwd); // Current Login Credentials
+
+        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                user.updateEmail(newMail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(profile.this, "Invalid Email", Toast.LENGTH_LONG).show();
+                        }else{
+                            reference.child(user.getUid()).child("email").setValue(newMail);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
 
     public void setData(){
         if(user != null){
@@ -276,22 +316,6 @@ public class profile extends AppCompatActivity {
         }
     }
 
-    private boolean isAddressChanged() {
-        if(!dbAddress.equals(address.getText().toString().trim())){
-            reference.child(dbMobile).child("address").setValue(address.getText().toString().trim());
-            return true;
-        }else{
-            return false;
-        }
-    }
-    private boolean isPasswordChanged(){
-        if(!dbPassword.equals(password.getText().toString().trim())){
-            reference.child(dbMobile).child("password").setValue(password.getText().toString().trim());
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     void ImageClick(){
         Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -309,4 +333,18 @@ public class profile extends AppCompatActivity {
             }
         }
     }
+
+    private boolean isValidPassword(String password){
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8,12}$";
+        Pattern p = Pattern.compile(regex);
+        if (password == null) {
+            return false;
+        }
+        Matcher m = p.matcher(password);
+        return m.matches();
+    }
+
 }

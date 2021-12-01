@@ -15,20 +15,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:hint="Email"
-        app:hintTextColor="@color/black"
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        app:startIconTint="@color/black"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp">
+        app:boxCornerRadiusTopStart="10dp"
+        app:helperTextTextColor="@color/red"
+        app:hintTextColor="@color/black"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/email_input"/>
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,29 +36,28 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_below="@id/email"
+        android:layout_marginTop="10dp"
         android:hint="Phone Number"
-        app:hintTextColor="@color/black"
-        app:startIconDrawable="@drawable/ic_phone"
-        app:startIconTint="@color/black"
-        app:prefixText="+91"
-        app:prefixTextColor="@color/light_black"
-        app:counterEnabled="true"
-        app:counterMaxLength="10"
-        app:helperText="Required*"
-        app:helperTextTextColor="@color/red"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
-        app:boxCornerRadiusTopStart="10dp">
+        app:boxCornerRadiusTopStart="10dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:helperTextTextColor="@color/red"
+        app:hintTextColor="@color/black"
+        app:prefixText="+91"
+        app:prefixTextColor="@color/light_black"
+        app:startIconDrawable="@drawable/ic_phone"
+        app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mobile_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="10"
             android:inputType="number"
-            android:id="@+id/mobile_input"/>
+            android:maxLength="10" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +76,6 @@
         app:counterEnabled="true"
         app:counterMaxLength="12"
         app:endIconMode="password_toggle"
-        app:helperText="Required*"
         app:helperTextTextColor="@color/red"
         app:hintTextColor="@color/black"
         app:startIconDrawable="@drawable/ic_baseline_lock_24"

@@ -2,7 +2,9 @@ package com.mohith.delicious;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
@@ -22,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 public class Login extends Fragment {
 
     TextInputEditText email,password;
+    TextInputLayout email_out,password_out;
     Button login;
     Intent intent;
     FirebaseAuth mAuth;
@@ -37,8 +41,44 @@ public class Login extends Fragment {
         email = root.findViewById(R.id.email_input);
         password = root.findViewById(R.id.password_input);
 
-        mAuth = FirebaseAuth.getInstance();
+        email_out = root.findViewById(R.id.email);
+        password_out = root.findViewById(R.id.password);
+        email_out.setHelperText("*Required");
+        password_out.setHelperText("*Required");
 
+
+        email.addTextChangedListener(new TextWatcher() {
+             @Override
+             public void beforeTextChanged (CharSequence s,int start, int count,int after){
+             }
+             @Override
+             public void onTextChanged ( final CharSequence s, int start, int before,int count){
+                 email_out.setHelperText("");
+             }
+             @Override
+             public void afterTextChanged ( final Editable s){
+             }
+         }
+        );
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged (CharSequence s,int start, int count,int after){
+
+            }
+            @Override
+            public void onTextChanged ( final CharSequence s, int start, int before,int count){
+                password_out.setHelperText("");
+            }
+            @Override
+            public void afterTextChanged ( final Editable s){
+
+            }
+         }
+        );
+
+
+        mAuth = FirebaseAuth.getInstance();
 
         login = root.findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
@@ -54,10 +94,10 @@ public class Login extends Fragment {
         String userMobile = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         if(TextUtils.isEmpty(userMobile)){
-            email.setError("please enter phone number");
+            email_out.setHelperText("*Required");
             email.requestFocus();
         }if(TextUtils.isEmpty(userPassword)){
-            password.setError("please enter password");
+            password_out.setHelperText("*Required");
             password.requestFocus();
         }else{
             mAuth.signInWithEmailAndPassword(userMobile,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -89,4 +129,6 @@ public class Login extends Fragment {
             });
         }
     }
+
+
 }
